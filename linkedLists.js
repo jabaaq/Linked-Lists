@@ -44,6 +44,38 @@ class LinkedList {
 
     }
 
+    find(value) {       //returns the index of the node containing value, or null if not found.
+
+        if (!this.head) {
+            return null
+        }
+
+        let currentNode = this.head
+
+        while (currentNode) {
+            if (currentNode.value === value) {
+                return currentNode
+            }
+
+            currentNode = currentNode.next
+        }
+
+        return null
+
+    }
+
+    size() {
+        let count = 0;
+        let node = this.head
+
+        while (node) {
+            count++
+            node = node.next
+        }
+
+        return count
+    }
+
     toArray() {
         const nodes = []
 
@@ -65,4 +97,4 @@ class LinkedList {
 const list = new LinkedList()
 list.append('a').append('b').prepend('New')
 
-console.log(list.toString());
+console.log(list.size());    //null
