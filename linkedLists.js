@@ -107,9 +107,59 @@ class LinkedList {
         return lastNode
     }
 
+    at(index) {
+        if (index < 0 || index >= this.length) {
+            return null     // Index out of bounds
+        }
+
+        let current = this.head
+        let currentIndex = 0
+
+        while (currentIndex < index) {
+            current = current.next   //moves on to the next node
+            currentIndex++
+        }
+
+        return current
+    }
+
+    pop() {
+        if (this.length === 0) {    // no node in the list, therefore return null
+            return null
+        }
+
+        let current = this.head
+        let newTail = current
+
+        while (current.next) {
+            newTail = current
+            current = current.next
+        }
+
+        this.tail = newTail
+        this.tail.next = null
+        this.length = this.length - 1
+        if (this.length === 1) {
+
+            this.head = null
+            this.tail = null
+        }
+        return current
+    }
+
+    contains(value) {
+        let node = this.head
+        while (node) {
+            if (node.value === value) {
+                return true
+            }
+            node = node.next
+        }
+        return false
+    }
 }
 
 const list = new LinkedList()
 list.append('a').append('b').append('New')
 
-console.log(list.getLast().toString());   //a
+console.log(list.contains('New'));  
