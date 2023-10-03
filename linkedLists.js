@@ -92,9 +92,24 @@ class LinkedList {
         return this.toArray().map(node => node.toString()).toString()
     }
 
+    getFirst() {
+        return this.head
+    }
+
+    getLast() {
+        let lastNode = this.head
+
+        if (lastNode) {
+            while (lastNode.next) {
+                lastNode = lastNode.next
+            }
+        }
+        return lastNode
+    }
+
 }
 
 const list = new LinkedList()
-list.append('a').append('b').prepend('New')
+list.append('a').append('b').append('New')
 
-console.log(list.size());    //null
+console.log(list.getLast().toString());   //a
