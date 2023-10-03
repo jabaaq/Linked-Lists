@@ -31,6 +31,19 @@ class LinkedList {
         return this         // The current list will be returned
     }
 
+    prepend(value) {
+        const newNode = new Node(value, this.head)
+
+        this.head = newNode  //newNode is gonna be the new head of the linked list
+
+        if (!this.tail) {
+            this.tail = newNode
+        }
+
+        return this
+
+    }
+
     toArray() {
         const nodes = []
 
@@ -50,6 +63,6 @@ class LinkedList {
 }
 
 const list = new LinkedList()
-list.append('a').append('b').append('c')
+list.append('a').append('b').prepend('New')
 
 console.log(list.toString());
