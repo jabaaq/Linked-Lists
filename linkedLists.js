@@ -30,10 +30,26 @@ class LinkedList {
 
         return this         // The current list will be returned
     }
+
+    toArray() {
+        const nodes = []
+
+        let currentNode = this.head
+
+        while (currentNode) {
+            nodes.push(currentNode)
+            currentNode = currentNode.next
+        }
+        return nodes
+    }
+
+    toString() {
+        return this.toArray().map(node => node.toString()).toString()
+    }
+
 }
 
 const list = new LinkedList()
 list.append('a').append('b').append('c')
 
-console.log(JSON.stringify(list));
-//{"head":{"value":"a","next":{"value":"b","next":{"value":"c","next":null}}},"tail":{"value":"c","next":null}}
+console.log(list.toString());
