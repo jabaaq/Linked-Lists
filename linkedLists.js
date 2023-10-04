@@ -157,9 +157,61 @@ class LinkedList {
         }
         return false
     }
+
+    insertAt(value, index) {
+        if (index === 0 || this.size === 0) {
+            this.head = new Node(value, this.head);
+            this.size += 1;
+            return;
+        }
+        let current = this.head;
+        let count = 0, previous;
+        const node = new Node(value);
+        while (count < index) {
+            previous = current;
+            count++;
+            current = current.next;
+        }
+        node.next = current;
+        previous.next = node;
+        this.size++;
+    }
+
+    removeAt(index) {
+        if (index < 0 || index >= this.size) {
+            return null;
+        }
+
+        let current = this.head;
+        let previous = null;
+        let count = 0;
+
+        if (index === 0) {
+            this.head = current.next;
+        } else {
+            while (count < index) {
+                previous = current;
+                current = current.next;
+                count++;
+            }
+            previous.next = current.next;
+        }
+
+        this.size--;
+        return current.value;
+    }
 }
 
 const list = new LinkedList()
-list.append('a').append('b').append('New')
+list.append('First Element').append('Second element').append('Third element')
+let size = list.size()      //3
+let append = list.append('Appended value').toString()  //First Element,Second element,Third element,Appended value
+let firstElement = list.getFirst().toString()   //First Element
+let lastElement = list.getLast().toString()   //Third element but now it's 'Appended value'
+let atList = list.at(2)             //Third element
+let poppedElement = list.pop().toString()       //Appended value
+let contains = list.contains('First Element')           //true
+let insertedElement = list.insertAt('Inserted Element!', 2)
+let removedElement = list.removeAt(1).toString()            //Second element
 
-console.log(list.contains('New'));  
+//Log them to see the results
